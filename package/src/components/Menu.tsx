@@ -54,7 +54,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     locale
   } = props;
 
-  const { startDate, endDate } = dateRange;
+  const { startDate, endDate, showTopMenu } = dateRange;
   const canNavigateCloser = differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
   const commonProps = {
     dateRange, minDate, maxDate, helpers, handlers,
@@ -71,7 +71,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
         </Grid>
         <Divider orientation="vertical" flexItem/>
         <Grid>
-          <Grid container sx={{ padding: '20px 70px' }} alignItems="center">
+          <Grid container sx={{ padding: '20px 70px',display:(showTopMenu) ? 'block' : 'none' }} alignItems="center">
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
                 {startDate ? format(startDate, 'dd MMMM yyyy', {locale}) : 'Start Date'}
@@ -86,7 +86,7 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
               </Typography>
             </Grid>
           </Grid>
-          <Divider />
+          <Divider sx={{ display:(showTopMenu) ? 'block' : 'none' }}  />
           <Grid container direction="row" justifyContent="center" wrap="nowrap">
             <Month
               {...commonProps}

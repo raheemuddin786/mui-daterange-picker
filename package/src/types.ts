@@ -3,6 +3,7 @@ import React from 'react';
 export interface DateRange {
   startDate?: Date;
   endDate?: Date;
+  showTopMenu?: boolean;
 }
 
 // eslint-disable-next-line no-unused-vars
