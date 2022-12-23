@@ -4,6 +4,7 @@ export interface DateRange {
   startDate?: Date;
   endDate?: Date;
   showTopMenu?: boolean;
+  dateDisplayFormat?: string;
 }
 
 // eslint-disable-next-line no-unused-vars

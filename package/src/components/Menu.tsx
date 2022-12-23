@@ -54,11 +54,12 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
     locale
   } = props;
 
-  const { startDate, endDate, showTopMenu } = dateRange;
+  const { startDate, endDate, showTopMenu ,dateDisplayFormat} = dateRange;
   const canNavigateCloser = differenceInCalendarMonths(secondMonth, firstMonth) >= 2;
   const commonProps = {
     dateRange, minDate, maxDate, helpers, handlers,
   };
+  
   return (
     <Paper elevation={5} square>
       <Grid container direction="row" wrap="nowrap">
@@ -71,10 +72,12 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
         </Grid>
         <Divider orientation="vertical" flexItem/>
         <Grid>
-          <Grid container sx={{ padding: '20px 70px',display:(showTopMenu) ? 'block' : 'none' }} alignItems="center">
+        {(showTopMenu) ? 
+        <div>
+          <Grid container sx={{ padding: '20px 70px'}} alignItems="center">
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
-                {startDate ? format(startDate, 'dd MMMM yyyy', {locale}) : 'Start Date'}
+                {startDate ? format(startDate, dateDisplayFormat !==undefined ?dateDisplayFormat:'dd-MM-yyyy', {locale}) : 'Start Date'}
               </Typography>
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
@@ -82,11 +85,13 @@ const Menu: React.FunctionComponent<MenuProps> = (props: MenuProps) => {
             </Grid>
             <Grid item sx={{ flex: 1, textAlign: 'center' }}>
               <Typography variant="subtitle1">
-                {endDate ? format(endDate, 'dd MMMM yyyy', {locale}) : 'End Date'}
+                {endDate ? format(endDate, dateDisplayFormat !==undefined ?dateDisplayFormat:'dd-MM-yyyy', {locale}) : 'End Date'}
               </Typography>
             </Grid>
           </Grid>
-          <Divider sx={{ display:(showTopMenu) ? 'block' : 'none' }}  />
+          <Divider  />
+          </div>
+          : ""}
           <Grid container direction="row" justifyContent="center" wrap="nowrap">
             <Month
               {...commonProps}
